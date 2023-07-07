@@ -5,6 +5,7 @@ from matplotlib.patches import Patch
 from scipy.interpolate import interpolate
 
 
+
 def draw_resource():
     filename = "dataset/fanout/cpu.csv"
     colnames = ['O 2M', 'C 2M', 'W 2M', 'O 30M', 'C 30M', 'W 30M', 'O 100M', 'C 100M', 'W 100M']
@@ -131,13 +132,15 @@ def draw_latency():
                                                                                                               label="Wasmedge")
     plt.legend(loc="upper left")
 
-    #ax.set_yscale('log')
+    ax.set_yscale('log')
     # ax.set_xticklabels(("4","10","20","40"))
     plt.xticks([0, 1, 2, 3, 4, 5, 6, 7, 8], ['2', '4', '6', '8', '10', '20', '40','60','100'])
     plt.ylabel("Seconds")
+    plt.tight_layout()
+    ax.yaxis.set_label_coords(-.16, .5)
 
     plt.xlabel("File Sizes in MB")
     # set legend position
 
+    plt.savefig('figures/fanout_throughput.eps')
     plt.show()
-    plt.savefig('results/execution-time/execution-time')
